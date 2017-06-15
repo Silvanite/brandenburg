@@ -1,0 +1,14 @@
+{
+    "name": "silvanite/brandenburg",
+    "description": "Laravel Authentication Package",
+    "authors": [
+        {
+            "name": "Marco Mark",
+            "email": "marco@silvanite.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require-dev": {
+        "phpunit/phpunit": "^6.3@dev"
+    }
+}
