@@ -1,0 +1,2 @@
+# Brandenburg
+Laravel Authentication Package
