@@ -54,4 +54,15 @@ trait HasRoles
         return $this->roles()->detach($role);
     }
 
+    /**
+     * Reassign roles from an array of role Ids
+     *
+     * @param array $roles
+     * @return void
+     */
+    public function setRolesById(array $roles)
+    {
+        return $this->roles()->sync($roles);
+    }
+
 }
