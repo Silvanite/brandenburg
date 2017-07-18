@@ -13,7 +13,9 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        return Permission::all();
+        return Permission::get()->map(function($permission) {
+            return $permission->permission_slug;
+        });
     }
 
     /**
