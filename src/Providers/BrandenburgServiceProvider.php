@@ -93,6 +93,8 @@ class BrandenburgServiceProvider extends ServiceProvider
      */
     private function nobodyHasAccess($permission)
     {
-        return !Permission::find($permission)->hasUsers();
+        if (!$requestedPermission = Permission::find($permission)) return true;
+
+        return !$requestedPermission->hasUsers();
     }
 }
