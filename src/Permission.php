@@ -14,6 +14,7 @@ class Permission extends Model
      * @var string
      */
     protected $primaryKey = 'permission_slug';
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
