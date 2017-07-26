@@ -20,7 +20,7 @@ use Silvanite\Agencms\Route as AcmsRoute;
 |
 */
 
-Route::prefix('api')
+Route::prefix('brandenburg')
      ->namespace('Silvanite\Brandenburg\Controllers')
      ->middleware(['api', 'cors'])
      ->group(function() {
