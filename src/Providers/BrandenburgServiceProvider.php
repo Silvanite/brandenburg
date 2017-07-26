@@ -3,11 +3,17 @@
 namespace Silvanite\Brandenburg\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Route;
+use Gate;
+use Route;
+use Agencms;
 
 use Silvanite\Brandenburg\Policy;
 use Silvanite\Brandenburg\Permission;
+
+use Silvanite\Brandenburg\Middleware\AgencmsConfig;
+
+use Illuminate\Routing\Router;
+use Illuminate\Contracts\Http\Kernel;
 
 class BrandenburgServiceProvider extends ServiceProvider
 {
@@ -16,12 +22,27 @@ class BrandenburgServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Router $router, Kernel $kernel)
     {
         $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
 
         $this->registerApiRoutes();
         $this->registerPolicies();
+
+        $this->registerAgencms($router);
+    }
+
+    /**
+     * Register router middleware as plugin for Agencms. This will include all
+     * user related admin screen and endpoints in the CMS.
+     *
+     * @param Router $router
+     * @return void
+     */
+    private function registerAgencms(Router $router)
+    {
+        $router->aliasMiddleware('agencms.users', AgencmsConfig::class);
+        Agencms::registerPlugin('agencms.users');
     }
 
     /**
