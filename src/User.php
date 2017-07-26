@@ -28,4 +28,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token', 'api_token'
     ];
+
+    /**
+     * The attributes which should be extended to the model
+     *
+     * @var array
+     */
+    protected $appends = [
+        'roleids'
+    ];
+
+    /**
+     * Generate an array of Role IDs for this model
+     *
+     * @return array
+     */
+    public function getRoleidsAttribute()
+    {
+        return $this->roles()->pluck('id');
+    }
 }

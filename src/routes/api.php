@@ -20,20 +20,17 @@ use Silvanite\Agencms\Route as AcmsRoute;
 |
 */
 
-Route::prefix('api')
+Route::prefix('brandenburg')
      ->namespace('Silvanite\Brandenburg\Controllers')
-     ->middleware(['api', 'cors', 'auth:api'])
+     ->middleware(['api', 'cors'])
      ->group(function() {
         Route::resource('permissions', 'PermissionController');
         Route::resource('roles', 'RoleController');
         Route::resource('users', 'UserController');
         Route::resource('policies', 'PolicyController');
-        Route::middleware(['cors'])
-             ->post('login', 'LoginController@login');
-        Route::middleware(['cors'])
-             ->get('authorize', [
+        Route::post('login', 'LoginController@login');
+        Route::get('authorize', [
                  'as' => 'login', 
                  'uses' => 'LoginController@required'
-             ]);
-        //Route::post('login', 'Silvanite\Brandenburg\Controllers\LoginController@login');
+               ]);
      });

@@ -19,6 +19,15 @@ class Role extends Model
     ];
 
     /**
+     * The attributes which should be extended to the model
+     *
+     * @var array
+     */
+    protected $appends = [
+        'permissions'
+    ];
+
+    /**
      * Get all users which are assigned a specific role
      *
      * @return Illuminate\Support\Collection
@@ -33,9 +42,24 @@ class Role extends Model
      *
      * @return Illuminate\Support\Collection
      */
-    public function permissions()
+    public function getPermissions()
     {
-        return Permission::where('role_id', $this->id)->get();
+        return $this->hasMany(Permission::class);
+    }
+
+    /**
+     * Replace all existing permissions with a new set of permissions
+     *
+     * @param array $permissions
+     * @return void
+     */
+    public function setPermissions(array $permissions)
+    {
+        $this->revokeAll();
+
+        collect($permissions)->map(function ($permission) {
+            $this->grant($permission);
+        });
     }
 
     /**
@@ -84,5 +108,25 @@ class Role extends Model
         }
 
         return false;
+    }
+
+    /**
+     * Remove all permissions from this Role
+     *
+     * @return void
+     */
+    public function revokeAll()
+    {
+        return $this->getPermissions()->delete();
+    }
+
+    /**
+     * Get a list of permissions
+     *
+     * @return array
+     */
+    public function getPermissionsAttribute()
+    {
+        return Permission::where('role_id', $this->id)->get()->pluck('permission_slug');
     }
 }

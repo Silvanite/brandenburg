@@ -54,4 +54,68 @@ trait HasRoles
         return $this->roles()->detach($role);
     }
 
+    /**
+     * Reassign roles from an array of role Ids
+     *
+     * @param array $roles
+     * @return void
+     */
+    public function setRolesById(array $roles)
+    {
+        return $this->roles()->sync($roles);
+    }
+
+    protected function getArrayableAppends()
+    {
+        $this->appends = array_unique(array_merge(
+            $this->appends, [
+                'roleids'
+            ]
+        ));
+
+        return parent::getArrayableAppends();
+    }
+
+    /**
+     * Get the fillable attributes for the model.
+     *
+     * @return array
+     */
+    public function getFillable()
+    {
+        $this->fillable = array_unique(array_merge(
+            $this->fillable, [
+                'api_token'
+            ]
+        ));
+
+        return parent::getFillable();
+    }
+
+    /**
+     * Get the hidden attributes for the model.
+     *
+     * @return array
+     */
+    public function getHidden()
+    {
+        $this->hidden = array_unique(array_merge(
+            $this->hidden, [
+                'api_token'
+            ]
+        ));
+
+        return parent::getHidden();
+    }
+
+    /**
+     * Generate an array of Role IDs for this model
+     *
+     * @return array
+     */
+    public function getRoleidsAttribute()
+    {
+        return $this->roles()->pluck('id');
+    }
+
 }
