@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
-use Silvanite\Brandenburg\User;
+use App\User;
 
 class LoginController extends Controller
 {
