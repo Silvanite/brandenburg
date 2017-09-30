@@ -38,6 +38,7 @@ class AgencmsHandler
 
         Agencms::registerRoute(
             Route::init('users', 'Users', '/brandenburg/users')
+                ->icon('person')
                 ->addGroup(
                     Group::full('Details')->addField(
                         Field::number('id', 'Id')->readonly()->list(),
@@ -62,6 +63,7 @@ class AgencmsHandler
 
         Agencms::registerRoute(
             Route::init('roles', 'Roles', '/brandenburg/roles')
+                ->icon('supervisor_account')
                 ->addGroup(Group::full('Details')->addField(
                     Field::number('id', 'Id')->readonly()->list(),
                     Field::string('name', 'Name')->medium()->required()->list(),
