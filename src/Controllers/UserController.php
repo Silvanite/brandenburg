@@ -2,7 +2,7 @@
 
 namespace Silvanite\Brandenburg\Controllers;
 
-use App\User;
+use Silvanite\Brandenburg\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
