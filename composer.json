@@ -10,5 +10,15 @@
     "minimum-stability": "dev",
     "require-dev": {
         "phpunit/phpunit": "^6.3@dev"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Silvanite\\Brandenburg\\Providers\\BrandenburgServiceProvider"
+            ],
+            "aliases": {
+                "BrandenburgPolicy": "Silvanite\\Brandenburg\\Facades\\PolicyFacade"
+            }
+        }
     }
 }
