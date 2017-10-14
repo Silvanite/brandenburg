@@ -26,6 +26,10 @@ class BrandenburgServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
 
+        $this->publishes([
+            __DIR__.'/../Config/brandenburg.php' => config_path('brandenburg.php'),
+        ]);
+
         $this->registerApiRoutes();
         $this->registerPolicies();
 
@@ -52,6 +56,10 @@ class BrandenburgServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(
+            __DIR__.'/../Config/brandenburg.php', 'brandenburg'
+        );
+
         $this->registerPermissions();
     }
 

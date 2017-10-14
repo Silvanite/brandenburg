@@ -2,7 +2,7 @@
 
 namespace Silvanite\Brandenburg\Controllers;
 
-use App\User;
+use Silvanite\Brandenburg\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -40,7 +40,7 @@ class UserController extends Controller
         $user->password = bcrypt(str_random(12));
         $user->api_token = bcrypt(str_random(12));
 
-        $user->save();
+        $user->processImagesForSaving()->save();
 
         if (is_numeric($roles = $request->roleids)) $roles = [$roles];
 
@@ -72,7 +72,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         
-        $user->update($request->all());
+        $user->fill($request->all())->processImagesForSaving()->save();
         
         if (is_numeric($roles = $request->roleids)) $roles = [$roles];
 

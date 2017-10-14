@@ -38,15 +38,20 @@ class AgencmsHandler
 
         Agencms::registerRoute(
             Route::init('users', 'Users', '/brandenburg/users')
+                ->icon('person')
                 ->addGroup(
-                    Group::full('Details')->addField(
+                    Group::large('Details')->addField(
                         Field::number('id', 'Id')->readonly()->list(),
                         Field::string('name', 'Name')->medium()->required()->list(),
                         Field::string('email', 'Email')->medium()->required()->list(),
                         Field::related('roleids', 'Roles')->model(
                             Relationship::make('roles')
                         )
-                    )
+                    ),
+                    Group::small('Extra')->addField(
+                        Field::boolean('active', 'Active')->list(),
+                        Field::image('avatar', 'Profile Picture')->ratio(600, 600, true)
+                    )   
                 )
         );
     }
@@ -62,6 +67,7 @@ class AgencmsHandler
 
         Agencms::registerRoute(
             Route::init('roles', 'Roles', '/brandenburg/roles')
+                ->icon('supervisor_account')
                 ->addGroup(Group::full('Details')->addField(
                     Field::number('id', 'Id')->readonly()->list(),
                     Field::string('name', 'Name')->medium()->required()->list(),
