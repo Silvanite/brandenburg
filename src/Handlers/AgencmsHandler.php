@@ -4,7 +4,7 @@ namespace Silvanite\Brandenburg\Handlers;
 
 use Illuminate\Support\Facades\Auth;
 use Gate;
-use Silvanite\Agencms\Config as AgencmsConfig;
+use Silvanite\Agencms\Facades\ConfigFacade as AgencmsConfig;
 use Silvanite\Agencms\Route;
 use Silvanite\Agencms\Field;
 use Silvanite\Agencms\Group;
