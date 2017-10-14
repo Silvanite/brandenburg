@@ -14,7 +14,7 @@ class AppendUserTableAddToken extends Migration
     public function up()
     {
         Schema::table('users', function($table) {
-            $table->string('api_token')->index();
+            $table->string('api_token')->nullable()->index();
         });
     }
 
