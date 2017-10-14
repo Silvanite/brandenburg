@@ -5,7 +5,7 @@ namespace Silvanite\Brandenburg\Providers;
 use Illuminate\Support\ServiceProvider;
 use Gate;
 use Route;
-use Agencms;
+use Silvanite\Agencms\Config as Agencms;
 
 use Silvanite\Brandenburg\Policy;
 use Silvanite\Brandenburg\Permission;
