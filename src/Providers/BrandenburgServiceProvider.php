@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 use Gate;
 
 use Silvanite\Brandenburg\Policy;
-use Silvanite\Brandenburg\Permission;
 
 use Illuminate\Routing\Router;
 use Illuminate\Contracts\Http\Kernel;
@@ -52,19 +51,5 @@ class BrandenburgServiceProvider extends ServiceProvider
         $this->app->bind($container, function(){
             return new Policy;
         });
-    }
-
-    /**
-     * If nobody has this permission, grant access to everyone
-     * This avoids you from being locked out of your application
-     *
-     * @param string $permission
-     * @return boolean
-     */
-    private function nobodyHasAccess($permission)
-    {
-        if (!$requestedPermission = Permission::find($permission)) return true;
-
-        return !$requestedPermission->hasUsers();
     }
 }
