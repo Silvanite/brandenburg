@@ -4,13 +4,9 @@ namespace Silvanite\Brandenburg\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Gate;
-use Route;
-use Silvanite\Agencms\Facades\ConfigFacade as Agencms;
 
 use Silvanite\Brandenburg\Policy;
 use Silvanite\Brandenburg\Permission;
-
-use Silvanite\Brandenburg\Middleware\AgencmsConfig;
 
 use Illuminate\Routing\Router;
 use Illuminate\Contracts\Http\Kernel;
@@ -30,23 +26,7 @@ class BrandenburgServiceProvider extends ServiceProvider
             __DIR__.'/../Config/brandenburg.php' => config_path('brandenburg.php'),
         ]);
 
-        $this->registerApiRoutes();
         $this->registerPolicies();
-
-        $this->registerAgencms($router);
-    }
-
-    /**
-     * Register router middleware as plugin for Agencms. This will include all
-     * user related admin screen and endpoints in the CMS.
-     *
-     * @param Router $router
-     * @return void
-     */
-    private function registerAgencms(Router $router)
-    {
-        $router->aliasMiddleware('agencms.users', AgencmsConfig::class);
-        Agencms::registerPlugin('agencms.users');
     }
 
     /**
@@ -61,16 +41,6 @@ class BrandenburgServiceProvider extends ServiceProvider
         );
 
         $this->registerPermissions();
-    }
-
-    /**
-     * Load Api Routes into the application
-     *
-     * @return void
-     */
-    private function registerApiRoutes()
-    {
-        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
     }
 
     /**
