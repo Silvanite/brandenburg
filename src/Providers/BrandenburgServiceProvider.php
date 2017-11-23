@@ -39,8 +39,6 @@ class BrandenburgServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../Config/brandenburg.php', 'brandenburg'
         );
-
-        $this->registerPermissions();
     }
 
     /**
@@ -53,35 +51,6 @@ class BrandenburgServiceProvider extends ServiceProvider
     {
         $this->app->bind($container, function(){
             return new Policy;
-        });
-    }
-
-    /**
-     * Register default package related permissions
-     *
-     * @return void
-     */
-    private function registerPermissions()
-    {
-        collect([
-            'users_read', 
-            'users_update', 
-            'users_create', 
-            'users_delete', 
-            'roles_read', 
-            'roles_update', 
-            'roles_create', 
-            'roles_delete', 
-            'permissions_read', 
-            'permissions_update', 
-            'permissions_create', 
-            'permissions_delete', 
-        ])->map(function($permission) {
-            Gate::define($permission, function ($user) use ($permission) {
-                if ($this->nobodyHasAccess($permission)) return true;
-
-                return $user->hasRoleWithPermission($permission);
-            });
         });
     }
 
