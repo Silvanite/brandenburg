@@ -35,7 +35,7 @@ trait HasRoles
     /**
      * Assign a role to this user
      *
-     * @param $role
+     * @param string|Role $role
      * @return boolean
      */
     public function assignRole($role)
@@ -46,6 +46,12 @@ trait HasRoles
         return $this->roles()->attach($role);
     }
 
+    /**
+     * Remove a role from this user
+     *
+     * @param string|Role $role
+     * @return boolean
+     */
     public function removeRole($role)
     {
         if (is_string($role))
