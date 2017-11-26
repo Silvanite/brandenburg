@@ -2,8 +2,8 @@
 
 namespace Silvanite\Brandenburg;
 
-use Illuminate\Database\Eloquent\Model;
 use Silvanite\Brandenburg\Role;
+use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model
 {

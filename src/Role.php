@@ -2,9 +2,8 @@
 
 namespace Silvanite\Brandenburg;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Gate;
-use App\User;
+use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
@@ -34,7 +33,7 @@ class Role extends Model
      */
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(config('brandenburg.userModel'));
     }
 
     /**

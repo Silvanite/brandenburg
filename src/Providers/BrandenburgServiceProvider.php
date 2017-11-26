@@ -2,13 +2,11 @@
 
 namespace Silvanite\Brandenburg\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Gate;
-
-use Silvanite\Brandenburg\Policy;
-
 use Illuminate\Routing\Router;
+use Silvanite\Brandenburg\Policy;
 use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Support\ServiceProvider;
 
 class BrandenburgServiceProvider extends ServiceProvider
 {
