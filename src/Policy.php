@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Gate;
 class Policy
 {
     /**
-     * Retrieves all registered policies from the Gate
+     * Retrieves all registered policies from the Gate. Only policies registered in the application
+     * can be assigned to groups.
      *
      * @return array
      */

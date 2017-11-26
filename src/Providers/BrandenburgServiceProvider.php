@@ -39,7 +39,7 @@ class BrandenburgServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the Policies module
+     * Register the Policies module as a Facade
      *
      * @param string $IoC name of the container
      * @return Silvanite\Brandenburg\Policy
