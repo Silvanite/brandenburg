@@ -3,14 +3,12 @@
     "description": "Laravel Authentication Package",
     "authors": [
         {
-            "name": "Marco Mark",
+            "name": "Marco Mark (m2de)",
             "email": "marco@silvanite.com"
         }
     ],
     "minimum-stability": "dev",
-    "require-dev": {
-        "phpunit/phpunit": "^6.3@dev"
-    },
+    "prefer-stable" : true,
     "autoload": {
         "psr-4": {
             "Silvanite\\Brandenburg\\": "src/"
