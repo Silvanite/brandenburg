@@ -2,8 +2,8 @@
 
 Laravel Authentication Package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/silvanite/brandenburg.svg?style=flat-square)](https://packagist.org/packages/silvanite/brandenburg)
-[![Build Status](https://img.shields.io/travis/Silvanite/brandenburg/master.svg?style=flat-square)](https://travis-ci.org/Silvanite/brandenburg)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/silvanite/brandenburg.svg?style=for-the-badge)](https://packagist.org/packages/silvanite/brandenburg)
+[![Build Status](https://img.shields.io/travis/Silvanite/brandenburg/master.svg?style=for-the-badge)](https://travis-ci.org/Silvanite/brandenburg)
 
 A opinionated Authentication package to closely integrate with standard Laravel Gates. It differs from other authentication packages by using hard-coded permissions defined within gate policies, rather than duplicating them within the Database.
 
