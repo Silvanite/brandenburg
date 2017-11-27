@@ -8,8 +8,9 @@
         }
     ],
     "license": "GPL-3.0",
-    "minimum-stability": "dev",
-    "prefer-stable" : true,
+    "require": {
+        "php" : ">=7.0"
+    },
     "autoload": {
         "psr-4": {
             "Silvanite\\Brandenburg\\": "src/"
