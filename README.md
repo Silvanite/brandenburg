@@ -1,11 +1,11 @@
 # Brandenburg
 
-Laravel Authentication Package
+Laravel Authorization Package
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/Silvanite/brandenburg.svg?style=for-the-badge)](https://packagist.org/packages/silvanite/brandenburg)
 [![Build Status](https://img.shields.io/travis/Silvanite/brandenburg/master.svg?style=for-the-badge)](https://travis-ci.org/Silvanite/brandenburg)
 
-A opinionated Authentication package to closely integrate with standard Laravel Gates. It differs from other authentication packages by using hard-coded permissions defined within gate policies, rather than duplicating them within the Database.
+A opinionated Authorization package to closely integrate with standard Laravel Gates. It differs from other authorization packages by using hard-coded permissions defined within gate policies, rather than duplicating them within the Database.
 
 TLDR; This package provides Users with Roles which are granted access to permissions (Laravel Gates).
 
@@ -15,7 +15,7 @@ TLDR; This package provides Users with Roles which are granted access to permiss
 composer require silvanite/brandenburg
 ```
 
-This package uses auto-loading of both the service provider and the `BrandenburgPolicy` Facade
+This package uses auto-loading in Laravel 5.5 of both the service provider and the `BrandenburgPolicy` Facade
 
 For Laravel 5.1 - 5.4 load the Service Provider and Facde.
 
@@ -32,7 +32,7 @@ For Laravel 5.1 - 5.4 load the Service Provider and Facde.
 ],
 ```
 
-Two additional tables are required to enable User Roles. These will be installed automatically when you run the migrations. See the migration in this repository's source code for details about the tables created.
+Three additional tables are required to enable User Roles. These will be installed automatically when you run the migrations. See the migration in this repository's source code for details about the tables created.
 
 ```sh
 php artisan migrate
@@ -158,6 +158,10 @@ Outside of your Gate definitions you should use the standard Laravel Gate method
 1. Run the tests: `./vendor/bin/phpunit`
 1. Push to the branch: `git push origin my-new-feature`
 1. Submit a pull request
+
+## Support
+
+If you require any support please contact me on [Twitter](https://twitter.com/m2de_io) or open an issue on this repository.
 
 ## License
 
