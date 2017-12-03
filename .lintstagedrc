@@ -1,5 +1,8 @@
 {
     "*.php": [
         "./vendor/bin/phpcs"
+    ],
+    "*.md": [
+        "markdownlint"
     ]
 }
