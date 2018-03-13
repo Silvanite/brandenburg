@@ -4,6 +4,5 @@ return [
     /**
      * Brandenburg Package Configuration
      */
-    'userModel' => 'App\User'
+    'userModel' => env('USER_MODEL', 'App\User')
 ];
-
