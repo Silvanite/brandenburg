@@ -17,6 +17,18 @@ trait HasRoles
     }
 
     /**
+     * Scope a query to eager load `roles` relationship
+     * to reduce database queries
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithRoles($query)
+    {
+        return $query->with('roles');
+    }
+
+    /**
      * Determine if any of the assigned roles to this user
      * have a specific permission
      *
