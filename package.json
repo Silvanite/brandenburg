@@ -1,6 +1,6 @@
 {
     "name": "brandenburg",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Laravel Authorization Package",
     "main": "index.js",
     "directories": {
