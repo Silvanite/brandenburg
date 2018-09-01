@@ -24,7 +24,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Silvanite\\Brandenburg\\Providers\\BrandenburgServiceProvider"
+                "Silvanite\\Brandenburg\\Providers\\BrandenburgServiceProvider",
+                "Silvanite\\Brandenburg\\Providers\\AuthServiceProvider"
             ],
             "aliases": {
                 "BrandenburgPolicy": "Silvanite\\Brandenburg\\Facades\\PolicyFacade"

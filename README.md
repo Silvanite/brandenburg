@@ -150,6 +150,39 @@ $canCreateArticle = $user->hasRoleWithPermission('create-articles');
 
 Outside of your Gate definitions you should use the standard Laravel Gate methods and helpers to check if a user has access rights. See the [Laravel Documentation](https://laravel.com/docs/5.5/authorization#authorizing-actions-via-gates) for more details.
 
+## Laravel Nova
+
+This package includes a [Laravel Nova](https://nova.laravel.com) Roles resource for you to include if you are using Nova.
+
+Create a new file `Role.php` inside your `app/Nova` directory with the following content:
+
+```php
+<?php
+
+namespace App\Nova;
+
+use Silvanite\Brandenburg\Nova\Role as NovaRole;
+
+class Role extends NovaRole
+{
+    //
+}
+```
+
+Unless you are manually registering resources, this should automatically activate the Roles resource. Otherwise you will need to manually include the `App\Nova\Role` resource in your Nova resources.
+
+Finally, to allow you to attach Roles to Users, include the Roles in your Nova fields ...
+
+```php
+public function fields(Request $request)
+    {
+        return [
+            ...
+            BelongsToMany::make('Roles'),
+        ];
+    }
+```
+
 ## Contributing
 
 1. Fork it!
