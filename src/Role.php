@@ -98,7 +98,7 @@ class Role extends Model
     {
         if ($this->hasPermission($permission)) return true;
 
-        if (!array_has(Gate::abilities(), $permission))
+        if (!array_key_exists($permission, Gate::abilities()))
             abort(403, 'Unknown permission');
 
         return Permission::create([
