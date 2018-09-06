@@ -2,6 +2,7 @@
 
 namespace Silvanite\Brandenburg;
 
+use Silvanite\Brandenburg\Policy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Database\Eloquent\Model;
 
@@ -158,6 +159,10 @@ class Role extends Model
         $this->revokeAll();
 
         collect($permissions)->map(function ($permission) {
+            if (!in_array($permission, Policy::all())) {
+                return;
+            }
+
             $this->grant($permission);
         });
     }
