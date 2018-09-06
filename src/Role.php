@@ -2,6 +2,7 @@
 
 namespace Silvanite\Brandenburg;
 
+use Silvanite\Brandenburg\Policy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +15,8 @@ class Role extends Model
      */
     protected $fillable = [
         'slug',
-        'name'
+        'name',
+        'permissions',
     ];
 
     /**
@@ -24,6 +26,15 @@ class Role extends Model
      */
     protected $appends = [
         'permissions'
+    ];
+
+    /**
+     * Cast attributes to their correct types
+     *
+     * @var array
+     */
+    protected $casts = [
+        'permissions' => 'array'
     ];
 
     /**
@@ -54,6 +65,10 @@ class Role extends Model
      */
     public function setPermissions(array $permissions)
     {
+        if (!$this->id) {
+            $this->save();
+        }
+
         $this->revokeAll();
 
         collect($permissions)->map(function ($permission) {
@@ -83,11 +98,11 @@ class Role extends Model
     {
         if ($this->hasPermission($permission)) return true;
 
-        if (!array_has(Gate::abilities(), $permission)) 
+        if (!array_key_exists($permission, Gate::abilities()))
             abort(403, 'Unknown permission');
 
         return Permission::create([
-            'role_id' => $this->id, 
+            'role_id' => $this->id,
             'permission_slug' => $permission
         ]);
 
@@ -126,6 +141,29 @@ class Role extends Model
      */
     public function getPermissionsAttribute()
     {
-        return Permission::where('role_id', $this->id)->get()->pluck('permission_slug');
+        return Permission::where('role_id', $this->id)->get()->pluck('permission_slug')->toArray();
+    }
+
+    /**
+     * Replace all existing permissions with a new set of permissions
+     *
+     * @param array $permissions
+     * @return void
+     */
+    public function setPermissionsAttribute(array $permissions)
+    {
+        if (!$this->id) {
+            $this->save();
+        }
+
+        $this->revokeAll();
+
+        collect($permissions)->map(function ($permission) {
+            if (!in_array($permission, Policy::all())) {
+                return;
+            }
+
+            $this->grant($permission);
+        });
     }
 }

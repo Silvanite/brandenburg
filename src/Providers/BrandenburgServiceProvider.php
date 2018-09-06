@@ -23,7 +23,7 @@ class BrandenburgServiceProvider extends ServiceProvider
             __DIR__.'/../Config/brandenburg.php' => config_path('brandenburg.php'),
         ]);
 
-        $this->registerPolicies();
+        $this->registerPolicy();
     }
 
     /**
@@ -44,7 +44,7 @@ class BrandenburgServiceProvider extends ServiceProvider
      * @param string $IoC name of the container
      * @return Silvanite\Brandenburg\Policy
      */
-    private function registerPolicies($container = "BrandenburgPolicy")
+    private function registerPolicy($container = "BrandenburgPolicy")
     {
         $this->app->bind($container, function(){
             return new Policy;
