@@ -19,10 +19,6 @@ class BrandenburgServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
 
-        $this->publishes([
-            __DIR__.'/../Config/brandenburg.php' => config_path('brandenburg.php'),
-        ]);
-
         $this->registerPolicy();
     }
 
@@ -33,9 +29,7 @@ class BrandenburgServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(
-            __DIR__.'/../Config/brandenburg.php', 'brandenburg'
-        );
+        //
     }
 
     /**
