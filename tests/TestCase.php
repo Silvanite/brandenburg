@@ -63,7 +63,7 @@ class TestCase extends OrchestraTestCase
             'prefix'   => '',
         ]);
 
-        $app['config']->set('brandenburg.userModel', 'Silvanite\Brandenburg\Test\User');
+        $app['config']->set('auth.providers.users.model', 'Silvanite\Brandenburg\Test\User');
     }
 
     protected function setupDatabase($app)
