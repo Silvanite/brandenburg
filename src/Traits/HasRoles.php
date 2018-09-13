@@ -73,13 +73,14 @@ trait HasRoles
     }
 
     /**
-     * Reassign roles from an array of role Ids
+     * Reassign roles from an id or an array of role Ids
      *
-     * @param array $roles
+     * @param int|array $roles
      * @return void
      */
-    public function setRolesById(array $roles)
+    public function setRolesById($roles)
     {
+        $roles = is_array($roles)? $roles : [$roles];
         return $this->roles()->sync($roles);
     }
 }
