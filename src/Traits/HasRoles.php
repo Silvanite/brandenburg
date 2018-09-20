@@ -13,7 +13,7 @@ trait HasRoles
      */
     public function roles()
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class)->with('getPermissions');
     }
 
     /**
@@ -37,11 +37,9 @@ trait HasRoles
      */
     public function hasRoleWithPermission($permission)
     {
-        return $this->roles()->get()->filter(function($role) use ($permission) {
-            if ($role->hasPermission($permission)) return true;
-        })->count();
-
-        
+        return $this->roles->contains(function ($role) use ($permission) {
+            return $role->getPermissions->contains('permission_slug', $permission);
+        });
     }
 
     /**
@@ -52,8 +50,9 @@ trait HasRoles
      */
     public function assignRole($role)
     {
-        if (is_string($role))
+        if (is_string($role)) {
             return $this->roles()->attach(Role::where('slug', $role)->first());
+        }
 
         return $this->roles()->attach($role);
     }
@@ -66,8 +65,9 @@ trait HasRoles
      */
     public function removeRole($role)
     {
-        if (is_string($role))
+        if (is_string($role)) {
             return $this->roles()->detach(Role::where('slug', $role)->first());
+        }
 
         return $this->roles()->detach($role);
     }

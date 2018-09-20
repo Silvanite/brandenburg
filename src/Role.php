@@ -25,7 +25,7 @@ class Role extends Model
      * @var array
      */
     protected $appends = [
-        'permissions'
+        'permissions',
     ];
 
     /**
@@ -34,7 +34,7 @@ class Role extends Model
      * @var array
      */
     protected $casts = [
-        'permissions' => 'array'
+        'permissions' => 'array',
     ];
 
     /**
@@ -84,8 +84,7 @@ class Role extends Model
      */
     public function hasPermission($permission)
     {
-        return (bool)Permission::where('role_id', $this->id)
-                               ->where('permission_slug', $permission)->count();
+        return $this->getPermissions->contains('permission_slug', $permission);
     }
 
     /**
@@ -96,14 +95,17 @@ class Role extends Model
      */
     public function grant($permission)
     {
-        if ($this->hasPermission($permission)) return true;
+        if ($this->hasPermission($permission)) {
+            return true;
+        }
 
-        if (!array_key_exists($permission, Gate::abilities()))
+        if (!array_key_exists($permission, Gate::abilities())) {
             abort(403, 'Unknown permission');
+        }
 
         return Permission::create([
             'role_id' => $this->id,
-            'permission_slug' => $permission
+            'permission_slug' => $permission,
         ]);
 
         return false;
