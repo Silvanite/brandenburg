@@ -38,6 +38,12 @@ Three additional tables are required to enable User Roles. These will be install
 php artisan migrate
 ```
 
+If you are not going to use Brandenburg's default migrations, you should change the `ignoreMigrations` option in the configuration file. You may export the default migrations using:
+
+```sh
+php artisan vendor:publish --tag=brandenburg-migrations
+```
+
 ## Usage
 
 This package provides two traits. The main trait is intended for your user model which enabled model relationships.
