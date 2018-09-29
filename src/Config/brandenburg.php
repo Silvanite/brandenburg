@@ -2,7 +2,12 @@
 
 return [
     /**
-     * Brandenburg Package Configuration
+     * User model class name.
      */
-    'userModel' => env('USER_MODEL', 'App\User')
+    'userModel' => env('USER_MODEL', 'App\User'),
+
+    /**
+     * Configure Brandenburg to not register its migrations.
+     */
+    'ignoreMigrations' => false,
 ];

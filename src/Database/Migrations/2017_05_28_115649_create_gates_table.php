@@ -51,8 +51,6 @@ class CreateGatesTable extends Migration
 
             $table->primary(['role_id', 'user_id']);
         });
-
-        
     }
 
     /**
