@@ -3,6 +3,7 @@
 namespace Silvanite\Brandenburg;
 
 use Silvanite\Brandenburg\Role;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model
@@ -50,5 +51,16 @@ class Permission extends Model
     public function hasUsers()
     {
         return (bool)$this->roles()->has('users')->count();
+    }
+
+    /**
+     * Forget the cached state of the nobodyHasAccess method for a given permission
+     *
+     * @param string $permission
+     * @return void
+     */
+    public static function invalidateNobodyHasAccessCache($permission)
+    {
+        Cache::forget("brandenburg.nobodyhasaccess.{$permission}");
     }
 }

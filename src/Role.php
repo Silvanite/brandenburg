@@ -4,6 +4,7 @@ namespace Silvanite\Brandenburg;
 
 use Silvanite\Brandenburg\Policy;
 use Illuminate\Support\Facades\Gate;
+use Silvanite\Brandenburg\Permission;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
@@ -74,6 +75,8 @@ class Role extends Model
         collect($permissions)->map(function ($permission) {
             $this->grant($permission);
         });
+
+        Permission::invalidateNobodyHasAccessCache($permission);
     }
 
     /**
@@ -103,6 +106,8 @@ class Role extends Model
             abort(403, 'Unknown permission');
         }
 
+        Permission::invalidateNobodyHasAccessCache($permission);
+
         return Permission::create([
             'role_id' => $this->id,
             'permission_slug' => $permission,
@@ -120,6 +125,8 @@ class Role extends Model
     public function revoke($permission)
     {
         if (is_string($permission)) {
+            Permission::invalidateNobodyHasAccessCache($permission);
+
             return Permission::findOrFail($permission)->delete();
         }
 
@@ -133,6 +140,8 @@ class Role extends Model
      */
     public function revokeAll()
     {
+        Permission::invalidateNobodyHasAccessCache($permission);
+
         return $this->getPermissions()->delete();
     }
 
@@ -167,5 +176,7 @@ class Role extends Model
 
             $this->grant($permission);
         });
+
+        Permission::invalidateNobodyHasAccessCache($permission);
     }
 }

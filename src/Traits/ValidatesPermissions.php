@@ -2,6 +2,7 @@
 
 namespace Silvanite\Brandenburg\Traits;
 
+use Illuminate\Support\Facades\Cache;
 use Silvanite\Brandenburg\Permission;
 
 trait ValidatesPermissions
@@ -15,8 +16,10 @@ trait ValidatesPermissions
      */
     protected function nobodyHasAccess($permission)
     {
-        if (!$requestedPermission = Permission::find($permission)) return true;
+        return Cache::rememberForever("brandenburg.nobodyhasaccess.{$permission}", function () use ($permission) {
+            if (!$requestedPermission = Permission::find($permission)) return true;
 
-        return !$requestedPermission->hasUsers();
+            return !$requestedPermission->hasUsers();
+        });
     }
 }
