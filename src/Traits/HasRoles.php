@@ -9,7 +9,7 @@ trait HasRoles
     /**
      * Get all Roles given to this user
      *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles()
     {
