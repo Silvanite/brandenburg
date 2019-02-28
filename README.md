@@ -91,7 +91,7 @@ All Gates defined within your application will automatically be avilable as Perm
 All permissions are assigned by providing the key defined by your Gate. They can be granted and revoked.
 
 ```php
-// Arant access
+// Grant access
 $editor->grant('create-articles');
 
 // Revoke access
