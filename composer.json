@@ -7,7 +7,7 @@
             "email": "marco@silvanite.com"
         }
     ],
-    "license": "GPL-3.0",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Silvanite\\Brandenburg\\": "src/"
