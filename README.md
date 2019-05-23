@@ -9,6 +9,13 @@ A opinionated Authorization package to closely integrate with standard Laravel G
 
 TLDR; This package provides Users with Roles which are granted access to permissions (Laravel Gates).
 
+## Version compatibility
+
+| Laravel | Brandenburg |
+| ------- | ----------- |
+| <=5.7.x | 1.1.x       |
+| >=5.8.x | 1.2.x       |
+
 ## Installation
 
 ```sh
@@ -17,7 +24,7 @@ composer require silvanite/brandenburg
 
 This package uses auto-loading in Laravel 5.5 of both the service provider and the `BrandenburgPolicy` Facade
 
-For Laravel 5.1 - 5.4 load the Service Provider and Facde.
+For Laravel 5.1 - 5.4 load the Service Provider and Facade.
 
 ```php
 // config/app.php
@@ -84,7 +91,7 @@ $editor = Silvanite\Brandenburg\Role::create([
 
 ### Creating Permissions
 
-All Gates defined within your application will automatically be avilable as Permissions, there is no need/way to create these specifically in the database. Please see the [Laravel Gates documentation](https://laravel.com/docs/5.5/authorization#writing-gates) for additional information.
+All Gates defined within your application will automatically be available as Permissions, there is no need/way to create these specifically in the database. Please see the [Laravel Gates documentation](https://laravel.com/docs/5.5/authorization#writing-gates) for additional information.
 
 ### Managing Roles and Permissions
 
