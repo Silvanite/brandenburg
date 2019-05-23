@@ -34,8 +34,6 @@ For Laravel 5.1 - 5.4 load the Service Provider and Facde.
 
 Three additional tables are required to enable User Roles. These will be installed automatically when you run the migrations. See the migration in this repository's source code for details about the tables created.
 
-*Laravel 5.8 changed the user id column to big integer. This package maintains a foreign key relationship to the user id and has been changed to big integer in order to be compatible with Laravel 5.8. This should not affect existing installations at all. If you are installing this package in a < 5.8 codebase you will need to change either the laravel user migration or this package migration to ensure the column types match.*
-
 ```sh
 php artisan migrate
 ```
