@@ -16,6 +16,7 @@ TLDR; This package provides Users with Roles which are granted access to permiss
 | <=5.7.x | 1.1.x       |
 | >=5.8.x | 1.2.x       |
 | ^6.0    | 1.3.x       |
+| ^7.0    | 1.4.x       |
 
 ## Installation
 
