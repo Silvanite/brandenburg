@@ -13,7 +13,7 @@ trait HasRoles
      */
     public function roles()
     {
-        return $this->belongsToMany(Role::class)->with('getPermissions');
+        return $this->belongsToMany(Role::class)->with('getPermissions')->withTimestamps();
     }
 
     /**
