@@ -2,6 +2,7 @@
 
 namespace Silvanite\Brandenburg\Traits;
 
+use Illuminate\Support\Facades\Schema;
 use Silvanite\Brandenburg\Role;
 
 trait HasRoles
@@ -13,7 +14,13 @@ trait HasRoles
      */
     public function roles()
     {
-        return $this->belongsToMany(Role::class)->with('getPermissions');
+        $roles = $this->belongsToMany(Role::class)->with('getPermissions');
+
+        if (Schema::hasColumns('role_user', ['created_at', 'updated_at'])) {
+            $roles = $roles->withTimestamps();
+        }
+
+        return $roles;
     }
 
     /**

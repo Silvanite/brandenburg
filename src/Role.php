@@ -2,9 +2,10 @@
 
 namespace Silvanite\Brandenburg;
 
-use Silvanite\Brandenburg\Policy;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Schema;
+use Silvanite\Brandenburg\Policy;
 
 class Role extends Model
 {
@@ -44,7 +45,13 @@ class Role extends Model
      */
     public function users()
     {
-        return $this->belongsToMany(config('brandenburg.userModel'));
+        $users = $this->belongsToMany(config('brandenburg.userModel'));
+
+        if (Schema::hasColumns('role_user', ['created_at', 'updated_at'])) {
+            $users->withTimestamps();
+        }
+
+        return $users;
     }
 
     /**

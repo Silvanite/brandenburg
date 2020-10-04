@@ -35,7 +35,7 @@ class Permission extends Model
     /**
      * Find all roles which have this permission granted
      *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles()
     {
