@@ -51,7 +51,7 @@ php artisan migrate
 If you are not going to use Brandenburg's default migrations, you should change the `ignoreMigrations` option in the configuration file. You may export the default migrations using:
 
 ```sh
-php artisan vendor:publish --tag=brandenburg-migrations
+php artisan vendor:publish --tag=brandenburg-config
 ```
 
 ## Usage
