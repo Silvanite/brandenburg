@@ -46,7 +46,7 @@ class CreateGatesTable extends Migration
         
             $table->foreign('user_id')
                   ->references('id')
-                  ->on('users')
+                  ->on(config('brandenburg.user_table_name'))
                   ->onDelete('cascade');
 
             $table->primary(['role_id', 'user_id']);
